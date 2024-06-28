@@ -1,0 +1,259 @@
+{
+	"info": {
+		"_postman_id": "c4e52f3a-70a2-41a1-9c8c-c665c832443a",
+		"name": "Introduction to RESTful API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "34924506",
+		"_collection_link": "https://capstonse-q.postman.co/workspace/capstonse-Q-Workspace~2e6b1df2-1bb8-40d9-8ed5-60a7960195ee/collection/34924506-c4e52f3a-70a2-41a1-9c8c-c665c832443a?action=share&source=collection_link&creator=34924506"
+	},
+	"item": [
+		{
+			"name": "Mendapatkan semua data post",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Response status code should be 200', function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has the correct Content-Type header\", function () {",
+							"  pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+							"});",
+							"",
+							"pm.test('Verify presence of userId property', function() {",
+							"  pm.expect(pm.response.json()[0]).to.have.property('userId');",
+							"});",
+							"",
+							"pm.test('Verify type and value of userId', function() {",
+							"  pm.expect(pm.response.json()[0].userId).to.be.a('number');",
+							"});",
+							"",
+							"pm.test('Verify presence of id property', function() {",
+							"  pm.expect(pm.response.json()[0]).to.have.property('id');",
+							"});",
+							"",
+							"pm.test('Verify type of id', function() {",
+							"  pm.expect(pm.response.json()[0].id).to.be.a('number');",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://jsonplaceholder.typicode.com/posts"
+			},
+			"response": []
+		},
+		{
+			"name": "Membuat data post baru",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Response status code should be 201', function () {",
+							"  pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"Response has the correct Content-Type header\", function () {",
+							"  pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+							"});",
+							"",
+							"pm.test('Verify presence of id property', function() {",
+							"  const responseBody = pm.response.json();",
+							"  pm.expect(responseBody).to.have.property('id');",
+							"});",
+							"",
+							"pm.test('Verify type and value of id', function() {",
+							"  const responseBody = pm.response.json();",
+							"  pm.expect(responseBody.id).to.be.a('number');",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://jsonplaceholder.typicode.com/posts"
+			},
+			"response": []
+		},
+		{
+			"name": "Mendapatkan data post berdasarkan ID.",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Response status code should be 200', function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has the correct Content-Type header\", function () {",
+							"  pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+							"});",
+							"",
+							"pm.test('Verify presence of userId property', function() {",
+							"  pm.expect(pm.response.json()).to.have.property('userId');",
+							"});",
+							"",
+							"pm.test('Verify type and value of userId', function() {",
+							"  pm.expect(pm.response.json().userId).to.be.a('number');",
+							"});",
+							"",
+							"pm.test('Verify presence of id property', function() {",
+							"  pm.expect(pm.response.json()).to.have.property('id');",
+							"});",
+							"",
+							"pm.test('Verify type of id', function() {",
+							"  pm.expect(pm.response.json().id).to.be.a('number');",
+							"});",
+							"",
+							"pm.test('Verify presence of title property', function() {",
+							"  pm.expect(pm.response.json()).to.have.property('title');",
+							"});",
+							"",
+							"pm.test('Verify type of title', function() {",
+							"  pm.expect(pm.response.json().title).to.be.a('string');",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://jsonplaceholder.typicode.com/posts/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Mengubah data post berdasarkan ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Response status code should be 200', function () {",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response has the correct Content-Type header\", function () {",
+							"  pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+							"});",
+							"",
+							"pm.test('Verify presence of id property', function() {",
+							"  const responseBody = pm.response.json();",
+							"  pm.expect(responseBody).to.have.property('id');",
+							"});",
+							"",
+							"pm.test('Verify type and value of id', function() {",
+							"  const responseBody = pm.response.json();",
+							"  pm.expect(responseBody.id).to.be.a('number');",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": "https://jsonplaceholder.typicode.com/posts/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Menghapus data post berdasarkan ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is within acceptable range\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1032);",
+							"});",
+							"",
+							"pm.test(\"Response contains data object\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.data).to.not.be.null;",
+							"});",
+							"",
+							"pm.test(\"Response has the correct Content-Type header\", function () {",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "https://jsonplaceholder.typicode.com/posts/1"
+			},
+			"response": []
+		}
+	]
+}
